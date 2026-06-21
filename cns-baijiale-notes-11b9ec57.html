@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>百家乐 · 知识型参考页</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background-color: #f0f2f5;
+      color: #1e2a3a;
+      line-height: 1.6;
+      padding: 2rem 1.5rem;
+    }
+
+    .page {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    /* hero 区 — 柔和克制 */
+    .hero {
+      text-align: center;
+      padding: 3rem 1rem 2.2rem;
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03), 0 6px 20px rgba(0,0,0,0.02);
+      margin-bottom: 2rem;
+      border: 1px solid #e9edf2;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: #1f2a44;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero .sub {
+      font-size: 1.05rem;
+      color: #5a6a7e;
+      max-width: 560px;
+      margin: 0.5rem auto 0;
+      border-top: 1px solid #eef1f5;
+      padding-top: 1rem;
+    }
+
+    /* 卡片网格 */
+    .card-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #e4e9f0;
+      border-radius: 20px;
+      padding: 1.8rem 2rem;
+      box-shadow: 0 2px 6px rgba(0, 20, 40, 0.02), 0 4px 12px rgba(0, 0, 0, 0.02);
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: #d0d8e5;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 8px 24px rgba(0, 20, 40, 0.04);
+    }
+
+    .card h2 {
+      font-size: 1.3rem;
+      font-weight: 550;
+      color: #1f2a44;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .card p {
+      margin-bottom: 0.5rem;
+      color: #2f3e52;
+    }
+
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .highlight-list {
+      list-style: none;
+      padding: 0.2rem 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.6rem;
+    }
+
+    .highlight-list li {
+      position: relative;
+      padding-left: 1.2rem;
+      color: #2f3e52;
+      font-size: 0.95rem;
+    }
+
+    .highlight-list li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      color: #708090;
+      font-weight: 700;
+    }
+
+    .inline-link {
+      color: #1f5090;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+
+    .inline-link:hover {
+      border-bottom-color: #1f5090;
+      opacity: 0.85;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #eef1f6;
+      padding: 1rem 0;
+    }
+
+    .faq-item:last-child {
+      border-bottom: 0;
+    }
+
+    .faq-q {
+      font-weight: 530;
+      color: #1a2a40;
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-a {
+      color: #3f4f65;
+      font-size: 0.95rem;
+      padding-left: 0.2rem;
+    }
+
+    .note-box {
+      background: #f6f8fc;
+      border-left: 4px solid #b0c4d9;
+      padding: 1rem 1.4rem;
+      border-radius: 0 12px 12px 0;
+      font-size: 0.95rem;
+      color: #2d3f54;
+      margin: 0.8rem 0 0.2rem;
+    }
+
+    /* 场景两个子卡片可以并列，但这里保留纵向 */
+    .meta-note {
+      font-size: 0.9rem;
+      color: #6a7e94;
+      border-top: 1px solid #e9edf4;
+      margin-top: 1.2rem;
+      padding-top: 0.8rem;
+    }
+
+    /* 响应式 */
+    @media (min-width: 640px) {
+      body {
+        padding: 3rem 2.5rem;
+      }
+      .card {
+        padding: 2rem 2.4rem;
+      }
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      .card-grid {
+        gap: 1.8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.9rem;
+      }
+      .card {
+        padding: 1.5rem 1.2rem;
+      }
+      .highlight-list {
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- hero 概览 -->
+  <div class="hero">
+    <h1>百家乐 · 规则与参照</h1>
+    <div class="sub">
+      从查询、对照到延伸阅读，一份偏向知识型的轻说明。
+    </div>
+  </div>
+
+  <!-- 卡片区域 -->
+  <div class="card-grid">
+
+    <!-- 1 摘要卡片 -->
+    <div class="card">
+      <h2>📋 摘要与定位</h2>
+      <p>
+        <a href="https://cns-baijiale.com" class="inline-link">百家乐</a> 
+        是纸牌类游戏中规则相对简洁的品种之一，其核心围绕庄、闲、和三种结果分布。
+        多数参与者将其作为一种概率对照与记录参考，而非运气依赖。
+      </p>
+      <p>
+        本介绍页从日常查询视角出发，整理常见术语、路单特征以及使用时的注意事项，
+        帮助读者更清晰地建立起自己的理解框架。
+      </p>
+    </div>
+
+    <!-- 2 亮点卡片 (特点) -->
+    <div class="card">
+      <h2>⚙️ 几点特征</h2>
+      <ul class="highlight-list">
+        <li>结果维度少：庄、闲、和，便于做简单频率统计</li>
+        <li>补牌规则固定，不依赖策略选择，更适合趋势观察</li>
+        <li>常见路单类型（珠盘、大路、小路等）为延伸分析提供参考</li>
+        <li>桌面节奏较快，适合阶段性回顾与笔记对照</li>
+      </ul>
+      <div class="note-box">
+        了解规则不等于具备预测能力，请保持客观的查阅习惯。
+      </div>
+    </div>
+
+    <!-- 3 使用建议 + 场景 -->
+    <div class="card">
+      <h2>📘 使用场景 & 建议</h2>
+      <p><strong>日常查询：</strong>当需要快速确认补牌条件或庄闲赔付比例时，可将 
+        <a href="https://cns-baijiale.com" class="inline-link">百家乐</a> 
+        页面作为对照入口。内容结构清晰，便于横向比较不同平台的描述差异。</p>
+      <p><strong>延伸阅读：</strong>对于想了解路单演变、赔率计算逻辑的读者，页面中的术语解释和图示能提供结构化起点。建议结合自身记录做交叉验证。</p>
+      <p><strong>克制使用：</strong>任何规则参考都不应被视为趋势保证。阅读时注意区分“历史分布”与“未来概率”，保持理性边界。</p>
+    </div>
+
+    <!-- 4 FAQ 摘要卡片 -->
+    <div class="card">
+      <h2>❓ FAQ 摘要</h2>
+      <div class="faq-item">
+        <div class="faq-q">庄家补牌规则需要死记吗？</div>
+        <div class="faq-a">不需要硬记。多数对照页面会列出表格，查阅时只需跟随闲家点数对应即可。反复查阅几次就会形成自然印象。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">「和」的出现频率高吗？</div>
+        <div class="faq-a">长期统计中和的概率约 9.5%–9.8% 左右（视牌靴数量略有浮动），但短时间内样本波动较大。不宜用小数样本推断趋势。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">路单图表是否具有参考价值？</div>
+        <div class="faq-a">路单是历史结果的视觉排列，本身不暗示未来。但对于喜欢做笔记、找循环特征的读者，路单可以提供一种记录维度。参考时不要赋予它因果属性。</div>
+      </div>
+    </div>
+
+    <!-- 可信但克制的访问说明 -->
+    <div class="card">
+      <h2>🔍 关于访问与参考</h2>
+      <p>互联网上关于 
+        <a href="https://cns-baijiale.com" class="inline-link">百家乐</a> 
+        的中文内容参差不齐，有些夹杂主观诱导。该站点保持相对中立的表述风格，适合作为基础查询与规则对照。</p>
+      <p>建议读者在使用时留意以下几点：</p>
+      <ul class="highlight-list" style="margin-top: 0.4rem;">
+        <li>优先对比 2–3 个不同来源的规则描述，避免单一依赖</li>
+        <li>警惕任何“必胜”“稳赚”类话术——这与概率常识不符</li>
+        <li>将阅读时间视为知识了解而非策略准备</li>
+        <li>若涉及实际参与，请先确认当地法律法规</li>
+      </ul>
+      <div class="meta-note">
+        本页为介绍性摘要，内容仅供个人学习与知识延伸，不构成任何形式的行为指导。
+      </div>
+    </div>
+
+  </div><!-- /card-grid -->
+
+  <!-- 尾注 -->
+  <div style="margin-top: 2rem; text-align: center; font-size: 0.85rem; color: #8395a8; border-top: 1px solid #dee5ef; padding-top: 1.5rem;">
+    <span>知识型参考 · 仅用于规则查询与延伸阅读</span>
+  </div>
+
+</div>
+</body>
+</html>
