@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>乐鱼 · 一眼识别网站用途</title>
+    <style>
+        /* 全局重置 & 基调 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f8fafc;
+            color: #1a2634;
+            line-height: 1.6;
+            padding: 1.25rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .page-wrapper {
+            max-width: 1120px;
+            margin: 0 auto;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* 主视觉 — 卡片式 hero */
+        .hero-card {
+            background: #ffffff;
+            border-radius: 2rem;
+            padding: 2.8rem 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 8px 28px rgba(0, 40, 30, 0.06), 0 2px 8px rgba(14, 94, 84, 0.04);
+            border-left: 6px solid #0e7a6a;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .hero-card h1 {
+            font-size: 2.6rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #0d2b26;
+            line-height: 1.2;
+        }
+        .hero-card .sub {
+            font-size: 1.15rem;
+            color: #3f5a55;
+            max-width: 72%;
+        }
+        .hero-card .meta-tag {
+            margin-top: 0.5rem;
+            display: inline-block;
+            background: #d9f0ea;
+            color: #0b5e52;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            align-self: flex-start;
+        }
+
+        /* 网格卡片区 — 两列 / 移动端一列 */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+            margin: 1.8rem 0 2rem;
+        }
+        .card {
+            background: white;
+            border-radius: 1.6rem;
+            padding: 1.8rem 1.6rem;
+            box-shadow: 0 4px 14px rgba(0, 30, 20, 0.04);
+            transition: all 0.2s ease;
+            border: 1px solid #e4efec;
+        }
+        .card:hover {
+            border-color: #9ecfc4;
+            box-shadow: 0 8px 24px rgba(14, 122, 106, 0.06);
+            transform: translateY(-3px);
+        }
+        .card h3 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 0.6rem;
+            color: #0e5e52;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .card h3 span {
+            background: #dff1ec;
+            border-radius: 30px;
+            padding: 0.1rem 0.6rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #0b5e52;
+        }
+        .card p {
+            color: #2f423e;
+            margin-bottom: 0.5rem;
+        }
+        .card ul {
+            list-style: none;
+            margin-top: 0.6rem;
+        }
+        .card ul li {
+            padding: 0.3rem 0 0.3rem 1.2rem;
+            position: relative;
+            color: #2a3a36;
+        }
+        .card ul li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #0a7a68;
+        }
+
+        /* 适合人群卡片 — 单列微网格 */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.2rem;
+            margin: 1.6rem 0;
+        }
+        .audience-item {
+            background: white;
+            border-radius: 1.2rem;
+            padding: 1.2rem 1rem;
+            text-align: center;
+            border: 1px solid #ddede8;
+            box-shadow: 0 2px 8px rgba(0, 40, 30, 0.02);
+        }
+        .audience-item .icon {
+            font-size: 1.6rem;
+            margin-bottom: 0.3rem;
+        }
+        .audience-item h4 {
+            font-weight: 500;
+            color: #0b5548;
+            font-size: 1rem;
+        }
+        .audience-item p {
+            font-size: 0.85rem;
+            color: #3d5b55;
+        }
+
+        /* 自然链接段落 */
+        .link-paragraph {
+            background: #ffffff;
+            border-radius: 1.8rem;
+            padding: 2rem 2rem;
+            margin: 2.2rem 0;
+            border: 1px solid #d6e8e2;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+        .link-paragraph a {
+            color: #0b6d5d;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1.5px dashed #62b5a4;
+            padding-bottom: 0.05rem;
+            transition: all 0.15s;
+        }
+        .link-paragraph a:hover {
+            border-bottom-style: solid;
+            color: #044d40;
+            background: #e0f3ee;
+            padding: 0.05rem 0.2rem;
+            border-radius: 2px;
+        }
+        .link-paragraph .highlight {
+            background: #dff3ed;
+            padding: 0.1rem 0.3rem;
+            border-radius: 4px;
+        }
+
+        /* FAQ摘要 + 提示 */
+        .faq-summary {
+            background: #ecf7f3;
+            border-radius: 1.8rem;
+            padding: 1.8rem 2rem;
+            margin: 2rem 0;
+        }
+        .faq-summary h3 {
+            font-weight: 500;
+            font-size: 1.2rem;
+            color: #0b4a40;
+            margin-bottom: 0.6rem;
+        }
+        .faq-summary details {
+            margin: 0.6rem 0;
+            padding: 0.2rem 0;
+        }
+        .faq-summary summary {
+            font-weight: 500;
+            color: #16443b;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .faq-summary summary::before {
+            content: "⏺";
+            color: #0a7a68;
+            font-size: 0.8rem;
+            margin-right: 0.4rem;
+        }
+        .faq-summary details p {
+            margin-left: 1.6rem;
+            color: #2c4b44;
+            font-size: 0.95rem;
+            padding: 0.4rem 0;
+        }
+
+        .tip-note {
+            font-size: 0.9rem;
+            background: white;
+            border-radius: 1.2rem;
+            padding: 1rem 1.5rem;
+            color: #1d4038;
+            border-left: 4px solid #0e8a78;
+            margin: 1.6rem 0;
+        }
+
+        /* 响应式 */
+        @media (max-width: 680px) {
+            body {
+                padding: 1rem;
+            }
+            .hero-card h1 {
+                font-size: 1.9rem;
+            }
+            .hero-card .sub {
+                max-width: 100%;
+            }
+            .grid-2col {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .link-paragraph {
+                padding: 1.5rem 1.2rem;
+            }
+            .faq-summary {
+                padding: 1.4rem 1.2rem;
+            }
+        }
+        @media (max-width: 460px) {
+            .hero-card {
+                padding: 1.8rem 1.2rem;
+            }
+            .audience-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* 小工具 */
+        .footer-note {
+            margin-top: 2.8rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7b928c;
+            border-top: 1px solid #d4e4df;
+            padding-top: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+    <!-- 主视觉卡片：一眼识别用途 -->
+    <div class="hero-card">
+        <div class="meta-tag">信息卡片 · 自然识别</div>
+        <h1>乐鱼 · 从第一眼<br>明白网站做什么</h1>
+        <div class="sub">
+            你不需要花时间猜测一个网站的功能。<br>
+            这里用卡片、场景和直接的语言，把“它是做什么的”放在前面。
+        </div>
+    </div>
+
+    <!-- 用途卡片：两个核心维度 -->
+    <div class="grid-2col">
+        <div class="card">
+            <h3>📋 功能用途 <span>核心</span></h3>
+            <p>提供一个轻量但完整的信息入口：了解平台定位、浏览内容方向、寻找后续操作的起点。不是工具集合，而是一个<strong>指向清晰的索引页</strong>。</p>
+            <ul>
+                <li>快速理解网站所属领域</li>
+                <li>预览主要服务模块</li>
+                <li>获得下一步的参考方向</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>🧭 识别方式 <span>直接</span></h3>
+            <p>通过分类卡片和简洁段落，你可以在一分钟内建立认知框架。不依赖复杂导航，不堆叠术语。</p>
+            <ul>
+                <li>视觉分组 — 一眼看出结构</li>
+                <li>克制文案 — 避免信息过载</li>
+                <li>自然链接 — 需要时再深入</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 适合人群：四个小卡片 -->
+    <h3 style="font-weight:500; color:#0b5548; margin-top:0.8rem;">适合这样的人群</h3>
+    <div class="audience-grid">
+        <div class="audience-item">
+            <div class="icon">🔍</div>
+            <h4>初次来访者</h4>
+            <p>想快速确认网站是否与自己相关</p>
+        </div>
+        <div class="audience-item">
+            <div class="icon">📱</div>
+            <h4>移动端用户</h4>
+            <p>希望在手机上获得清爽的浏览体验</p>
+        </div>
+        <div class="audience-item">
+            <div class="icon">🧩</div>
+            <h4>内容探索者</h4>
+            <p>不喜欢被广告或复杂弹窗干扰</p>
+        </div>
+        <div class="audience-item">
+            <div class="icon">📌</div>
+            <h4>需要参考的人</h4>
+            <p>想了解信息页面的常见结构</p>
+        </div>
+    </div>
+
+    <!-- 自然链接段落 -->
+    <div class="link-paragraph">
+        <p><span class="highlight">叙述感的一小段：</span> 如果你正试图搞清楚一个网站到底提供什么，<a href="https://mainsite-leyu.com">乐鱼</a> 的做法是先把答案摆出来。它没有用大篇幅的欢迎语，而是用卡片把“功能、场景、人群”拆开。<br><br>
+        比如你看到这个页面，几乎不需要滚动就能判断它是不是你要找的方向。而当你需要更具体的服务时，<a href="https://mainsite-leyu.com">乐鱼</a> 会引导你到对应的模块——但这一切的前提是：你首先认出了它。</p>
+    </div>
+
+    <!-- FAQ摘要 + 提示 -->
+    <div class="faq-summary">
+        <h3>❓ 常见疑问摘要</h3>
+        <details>
+            <summary>这个页面就是乐鱼的全部吗？</summary>
+            <p>不是。这是一个介绍性质的索引页，帮助新用户快速理解网站定位。完整的功能和内容在站点内部。</p>
+        </details>
+        <details>
+            <summary>我可以从卡片里直接进入具体功能吗？</summary>
+            <p>卡片主要展示分类和用途，你可以沿着页面中的链接（比如上方段落里的<a href="https://mainsite-leyu.com" style="border-bottom-style:solid; color:#0b5e52;">乐鱼</a>）进入对应区域。</p>
+        </details>
+        <details>
+            <summary>移动端浏览体验有区别吗？</summary>
+            <p>本页面针对手机做了适配，卡片竖向排列，字体和间距都保持可读性。你可以直接试试缩放或旋转屏幕。</p>
+        </details>
+        <div class="tip-note">
+            💡 提示：信息卡片本身不收集任何数据，所有链接指向的都是同一个站点。
+        </div>
+    </div>
+
+    <!-- 再一句自然嵌入链接（变化位置，避免重复感） -->
+    <p style="margin: 1rem 0 0.2rem; color: #2f4a44;">
+        如果你希望直接了解完整内容，<a href="https://mainsite-leyu.com" style="border-bottom:1px solid #0e7a6a; font-weight:500; color:#0b5e52;">乐鱼</a> 的主页提供了更多层次。
+    </p>
+
+    <div class="footer-note">
+        <!-- 不显示“进入、点击”等词，仅保留站点指向 -->
+        <span>页面内容仅用于介绍 · 方向识别卡片</span>
+    </div>
+</div>
+</body>
+</html>
